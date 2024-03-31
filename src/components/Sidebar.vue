@@ -1,0 +1,53 @@
+<template>
+    <div class="sidebar">
+      <div class="logo">
+        <h2>Admin Panel</h2>
+      </div>
+      <div class="menu">
+        
+        <router-link to="/admin/nhaxuatban/quanly"> <button>Quản lý Nhà Xuất Bản</button></router-link>
+        <router-link to="/admin/muonsach/quanly"> <button>Quản lý Mượn Sách</button></router-link>
+        <router-link to="/admin/sach/quanly"><button>Quản lý Sách</button> </router-link>
+        <router-link to="/admin/login"><button>Đăng xuất</button> </router-link>
+      </div>
+    </div>
+  </template>
+  
+  <style scoped>
+  .sidebar {
+    width: 250px;
+    padding: 20px;
+    height: 806px;
+  }
+  
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .router-link {
+    color: black;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  .router-link:hover {
+    text-decoration: underline;
+    
+  }
+
+  button{
+    margin: 3px;
+    background-color: #b5adad;
+    color: black;
+    border: solid;
+    font-size: 16px;
+  
+  }
+  </style>
+  
