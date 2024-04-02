@@ -4,28 +4,20 @@
     <form @submit.prevent="addPublisher">
       <div class="form-group">
         <label for="publisherName">Tên Nhà Xuất Bản:</label>
-        <input
-          type="text"
-          id="publisherName"
-          v-model="newPublisher.name"
-          required
-        />
+        <input type="text" id="publisherName" v-model="newPublisher.name" required />
       </div>
       <div class="form-group">
         <label for="publisherAddress">Địa Chỉ:</label>
-        <input
-          type="text"
-          id="publisherAddress"
-          v-model="newPublisher.address"
-          required
-        />
+        <input type="text" id="publisherAddress" v-model="newPublisher.address" required />
       </div>
       <button type="submit">Thêm</button>
+      <p>{{ message }}</p>
     </form>
   </div>
 </template>
-  
-  <script>
+
+<script>
+import IssuerService from "../../../services/issuer.service";
 export default {
   data() {
     return {
@@ -33,19 +25,31 @@ export default {
         name: "",
         address: "",
       },
+      message: "",
     };
   },
   methods: {
-    addPublisher() {
-      // Xử lý logic để thêm nhà xuất bản
-      console.log("Thêm Nhà Xuất Bản:", this.newPublisher);
-      // Sau khi thêm xong, có thể thực hiện chuyển hướng hoặc cập nhật dữ liệu
+    async addPublisher() {
+      try {
+         await IssuerService.create(this.newPublisher);
+          this.newPublisher.name = "";
+          this.newPublisher.address = "";
+          this.message = "Nhà xuất bản đã được thêm thành công.";
+      
+      } catch (error) {
+        this.message = "Đã xảy ra lỗi khi thêm nhà xuất bản.";
+        console.error(error);
+      }
     },
   },
+  created() {
+        this.message = "";
+    },
+
 };
 </script>
-  
-  <style scoped>
+
+<style scoped>
 .add-publisher {
   max-width: 400px;
   margin: auto;
@@ -76,4 +80,3 @@ button {
   cursor: pointer;
 }
 </style>
-  

@@ -21,15 +21,14 @@
           <tbody>
             <tr v-for="(book, index) in books" :key="index">
               <td>{{ index + 1 }}</td>
-              <td>{{ book.id }}</td>
-              <td>{{ book.title }}</td>
-              <td>{{ book.quantity }}</td>
-              <td>{{ book.price }}</td>
-              <td>{{ book.author }}</td>
-              <td>{{ book.year }}</td>
-              <td>{{ book.publisher }}</td>
+              <td>{{ book.masach }}</td>
+              <td>{{ book.tensach }}</td>
+              <td>{{ book.soquyen }}</td>
+              <td>{{ book.dongia }}</td>
+              <td>{{ book.tacgia }}</td>
+              <td>{{ book.namxuatban }}</td>
+              <td>{{ book.nhaxuatban.name }}</td>
               <td>
-                <button class="xemchitiet" @click="viewDetail(book)">Xem Chi Tiết</button>
                 <button class="sua"  @click="editBook(book)">Sửa</button>
                 <button class="xoa"  @click="deleteBook(book.id)">Xóa</button>
               </td>
@@ -42,19 +41,15 @@
   
   <script>
   import Sidebar from "@/components/Sidebar.vue"; // Đường dẫn đến component Sidebar
-  
+  import BookService from "../../../services/book.service";
+
   export default {
     components: {
       Sidebar
     },
     data() {
       return {
-        books: [
-          { id: 1, title: 'Sách A', quantity: 10, price: 10000, author: 'Tác Giả A', year: 2022, publisher: 'Nhà Xuất Bản A' },
-          { id: 2, title: 'Sách B', quantity: 15, price: 15000, author: 'Tác Giả B', year: 2021, publisher: 'Nhà Xuất Bản B' },
-          { id: 3, title: 'Sách C', quantity: 8, price: 12000, author: 'Tác Giả C', year: 2020, publisher: 'Nhà Xuất Bản A' }
-          // Thêm dữ liệu sách khác tại đây nếu cần
-        ]
+        books: [],
       };
     },
     methods: {
@@ -64,11 +59,25 @@
       editBook(book) {
         this.$router.push({ name: "suasach" });
       },
-      deleteBook(bookId) {
-        // Xử lý khi người dùng click vào nút Xóa
-        console.log('Xóa Sách:', bookId);
+      async deleteBook(book) {
+      if (confirm("Bạn muốn xóa sách này?")) {
+        try {
+          await BookService.delete(book._id);
+          this.books = this.books.filter(
+            (item) => item._id !== book._id
+          );
+        } catch (error) {
+          console.error("Lỗi khi xóa sách:", error);
+        }
       }
-    }
+    },
+    async getAllBook() {
+      this.books = await BookService.getAll();
+    },
+    },
+    mounted() {
+    this.getAllBook();
+  },
   };
   </script>
   
@@ -105,8 +114,7 @@
   }
   .them{
     margin-bottom: 12px;
-    background-color: blue;
-
+    background-color: #28a745;
   }
   .sua{
     background-color: #ffc107;
@@ -116,10 +124,6 @@
     background-color: #dc3545;
 
   }
-  .xemchitiet{
-    background-color: #28a745;
-    ;
 
-  }
   </style>
   

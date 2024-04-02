@@ -7,6 +7,7 @@
         
         <router-link to="/admin/nhaxuatban/quanly"> <button>Quản lý Nhà Xuất Bản</button></router-link>
         <router-link to="/admin/muonsach/quanly"> <button>Quản lý Mượn Sách</button></router-link>
+        <router-link to="/admin/user/quanly"> <button>Quản lý Đọc Giả</button></router-link>
         <router-link to="/admin/sach/quanly"><button>Quản lý Sách</button> </router-link>
         <router-link to="/admin/login"><button>Đăng xuất</button> </router-link>
       </div>

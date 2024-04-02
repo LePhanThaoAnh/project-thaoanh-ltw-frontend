@@ -96,7 +96,9 @@ td {
 th {
   background-color: #f2f2f2;
 }
-
+.sua {
+  background-color: #ffc107;
+}
 button {
   padding: 5px 10px;
   margin-right: 5px;

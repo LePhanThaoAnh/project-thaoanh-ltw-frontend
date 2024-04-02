@@ -16,6 +16,7 @@ import Themnhaxuatban from "../views/admin/nhaxuatban/them.vue";
 import Suanhaxuatban from "../views/admin/nhaxuatban/sua.vue";
 import Quanlymuonsach from "../views/admin/muonsach/quanly.vue";
 import Suatrangthai from "../views/admin/muonsach/sua.vue";
+import Quanlyuser from "../views/admin/user/quanly.vue";
 
 const routes = [
   {
@@ -107,6 +108,11 @@ const routes = [
     path: "/admin/nhaxuatban/quanly",
     name: "quanlynhaxuatban",
     component: Quanlynhaxuatban,
+  },
+  {
+    path: "/admin/user/quanly",
+    name: "quanlyuser",
+    component: Quanlyuser,
   },
   {
     path: '/admin/login', 
