@@ -30,6 +30,7 @@
         </select>
       </div>
       <button type="submit">Thêm Sách</button>
+      <p>{{ message }}</p>
     </form>
   </div>
 </template>

@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// import Header from './components/AppHeader.vue';
 export default {
   name: 'App',
   // components: {
