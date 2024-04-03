@@ -3,14 +3,21 @@
       <div class="logo">
         <h2>Admin Panel</h2>
       </div>
-      <div class="menu">
+      <ul class="list-group">
+        <router-link to="/admin/nhaxuatban/quanly"> <li class="list-group-item">Quản lý Nhà Xuất Bản</li></router-link>
+        <router-link to="/admin/muonsach/quanly"> <li class="list-group-item">Quản lý Mượn Sách</li></router-link>
+        <router-link to="/admin/user/quanly"> <li class="list-group-item">Quản lý Đọc Giả</li></router-link>
+        <router-link to="/admin/sach/quanly"><li class="list-group-item">Quản lý Sách</li> </router-link>
+        <router-link to="/admin/login"><li class="list-group-item">Đăng xuất</li> </router-link>
+      </ul>
+      <!-- <div class="menu">
         
         <router-link to="/admin/nhaxuatban/quanly"> <button>Quản lý Nhà Xuất Bản</button></router-link>
         <router-link to="/admin/muonsach/quanly"> <button>Quản lý Mượn Sách</button></router-link>
         <router-link to="/admin/user/quanly"> <button>Quản lý Đọc Giả</button></router-link>
         <router-link to="/admin/sach/quanly"><button>Quản lý Sách</button> </router-link>
         <router-link to="/admin/login"><button>Đăng xuất</button> </router-link>
-      </div>
+      </div> -->
     </div>
   </template>
   

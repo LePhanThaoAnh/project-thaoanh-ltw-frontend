@@ -42,8 +42,8 @@
 
   .header {
     font-family: ui-monospace;
-    background: linear-gradient(to right, #fc00ff, #00dbde);
-    color: #fff;
+    background-color: #cbcaca;
+    color: #383468;
     padding: 1rem 0;
   }
   

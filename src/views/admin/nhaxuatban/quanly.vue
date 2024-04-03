@@ -23,13 +23,12 @@
             <td>{{ publisher.address }}</td>
             <td>
               <router-link
-                :to="{
-                  name: 'suanhaxuatban',
-                  params: { id: publisher._id },
-                }"
+              :to="{
+                name: 'suanhaxuatban',
+                params: { id: publisher._id }
+              }"
               >
-                <button class="sua">Sửa</button></router-link
-              >
+                <button class="sua">Sửa</button></router-link>
               <button class="xoa" @click="deletePublisher(publisher)">
                 Xóa
               </button>

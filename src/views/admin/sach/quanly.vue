@@ -29,7 +29,13 @@
               <td>{{ book.namxuatban }}</td>
               <td>{{ book.nhaxuatban.name }}</td>
               <td>
-                <button class="sua"  @click="editBook(book)">Sửa</button>
+                <router-link
+              :to="{
+                name: 'suasach',
+                params: { id: book._id }
+              }"
+              >
+                <button class="sua">Sửa</button></router-link>
                 <button class="xoa"  @click="deleteBook(book.id)">Xóa</button>
               </td>
             </tr>

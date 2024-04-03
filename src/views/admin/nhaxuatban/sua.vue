@@ -1,7 +1,7 @@
 <template>
   <div class="edit-publisher">
     <h2>Sửa Nhà Xuất Bản</h2>
-    <form @submit="submitNhaxuatban" :validation-schema="nhaxuatbanFormSchema">
+    <form @submit.prevent="submitNhaxuatban" :validation-schema="nhaxuatbanFormSchema">
       <div class="form-group">
         <label for="publisherName">Tên Nhà Xuất Bản:</label>
         <input type="text" id="publisherName" v-model="nhaxuatbanLocal.name" required />
@@ -11,6 +11,13 @@
         <input type="text" id="publisherAddress" v-model="nhaxuatbanLocal.address" required />
       </div>
       <button type="submit">Lưu</button>
+      <router-link
+              :to="{
+                name: 'quanlynhaxuatban'
+              }"
+              >
+        <button type="button" class="trove">Trở Về</button>
+      </router-link>
     </form>   
      <p>{{ message }}</p>
   </div>
@@ -49,6 +56,7 @@ export default {
     async getNhaxuatban(id) {
       try {
         this.nhaxuatbanLocal = await IssuerService.get(id);
+
       } catch (error) {
         console.log(error);
         // Chuyển hướng sang trang NotFound đồng thời giữ nguyên URL
@@ -108,5 +116,9 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+.trove {
+  background-color: #ffc107;
+  margin-left: 20px;
 }
 </style>

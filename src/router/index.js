@@ -20,9 +20,10 @@ import Quanlyuser from "../views/admin/user/quanly.vue";
 
 const routes = [
   {
-    path: "/user/muonsach",
+    path: "/user/muonsach/:id",
     name: "muonsach",
     component: Muonsach,
+    props: true,
   },
   {
     path: "/user/nhaxuatban",
@@ -35,9 +36,10 @@ const routes = [
     component: Lichsu,
   },
   {
-    path: "/chitietsach",
+    path: "/chitietsach/:id",
     name: "chitietsach",
     component: Chitietsach,
+    props: true
   },
   {
     path: "/",
@@ -69,9 +71,10 @@ const routes = [
     component: Quanlymuonsach,
   },
   {
-    path: "/admin/muonsach/sua",
+    path: "/admin/muonsach/sua/:id",
     name: "suatrangthai",
     component: Suatrangthai,
+    props: true,
   },
   {
     path: "/admin/sach/chitiet",
@@ -79,9 +82,10 @@ const routes = [
     component: Chitiet,
   },
   {
-    path: "/admin/sach/sua",
+    path: "/admin/sach/sua/:id",
     name: "suasach",
     component: Suasach,
+    props: true
   },
   {
     path: "/admin/sach/them",
@@ -95,9 +99,10 @@ const routes = [
   },
 
   {
-    path: "/admin/nhaxuatban/sua",
+    path: "/admin/nhaxuatban/sua/:id",
     name: "suanhaxuatban",
     component: Suanhaxuatban,
+    props: true
   },
   {
     path: "/admin/nhaxuatban/them",

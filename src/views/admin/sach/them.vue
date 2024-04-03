@@ -3,57 +3,94 @@
     <h2>Thêm Sách</h2>
     <form @submit.prevent="addBook">
       <div class="form-group">
+        <label for="title">Mã sách:</label>
+        <input type="text" id="title" v-model="newBook.masach" required>
+      </div>
+      <div class="form-group">
         <label for="title">Tên Sách:</label>
-        <input type="text" id="title" v-model="newBook.title" required>
+        <input type="text" id="title" v-model="newBook.tensach" required>
       </div>
       <div class="form-group">
         <label for="price">Đơn Giá:</label>
-        <input type="number" id="price" v-model="newBook.price" required>
+        <input type="number" id="price" v-model="newBook.dongia" required>
       </div>
       <div class="form-group">
         <label for="quantity">Số Lượng:</label>
-        <input type="number" id="quantity" v-model="newBook.quantity" required>
+        <input type="number" id="quantity" v-model="newBook.soquyen" required>
       </div>
       <div class="form-group">
         <label for="author">Tác Giả:</label>
-        <input type="text" id="author" v-model="newBook.author" required>
+        <input type="text" id="author" v-model="newBook.tacgia" required>
       </div>
       <div class="form-group">
         <label for="year">Năm Sản Xuất:</label>
-        <input type="number" id="year" v-model="newBook.year" required>
+        <input type="number" id="year" v-model="newBook.namxuatban" required>
       </div>
       <div class="form-group">
         <label for="publisher">Nhà Xuất Bản:</label>
-        <select id="publisher" v-model="newBook.publisher" required>
+        <select id="publisher" v-model="selectedPublisher" required>
           <option disabled value="">Chọn nhà xuất bản</option>
-          <option v-for="publisher in publishers" :key="publisher">{{ publisher }}</option>
+          <option v-for="nhaxuatban in nhaxuatbans" :key="nhaxuatban._id" :value="nhaxuatban._id">{{ nhaxuatban.name }}</option>
         </select>
       </div>
       <button type="submit">Thêm Sách</button>
+      <router-link
+              :to="{
+                name: 'quanlysach'
+              }"
+              >
+        <button type="button" class="trove">Trở Về</button>
+      </router-link>
       <p>{{ message }}</p>
     </form>
   </div>
 </template>
-
 <script>
+import IssuerService from "../../../services/issuer.service";
+import BookService from "../../../services/book.service";
 export default {
   data() {
     return {
       newBook: {
-        title: '',
-        price: 0,
-        quantity: 0,
-        author: '',
+        masach: '',
+        tensach: '',
+        dongia: 0,
+        soquyen: 0,
+        tacgia: '',
         year: new Date().getFullYear(),
-        publisher: ''
+        namxuatban: '',
+        nhaxuatban: '' // Thêm thuộc tính nhaxuatban vào đây
       },
-      publishers: ['Nhà Xuất Bản A', 'Nhà Xuất Bản B', 'Nhà Xuất Bản C'] // Thay thế bằng dữ liệu thực tế
+      selectedPublisher: "",
+      nhaxuatbans: [] // Thay thế bằng dữ liệu thực tế
     };
   },
   methods: {
-    addBook() {
-      console.log('Thêm sách:', this.newBook);
-    }
+    async getAllIssuer() {
+      this.nhaxuatbans = await IssuerService.getAll();
+    },
+    
+    async addBook() {
+      try {
+        this.newBook.nhaxuatban = this.selectedPublisher;
+        await BookService.create(this.newBook);
+        this.newBook.masach = "";
+        this.newBook.tensach = "";
+        this.newBook.dongia = 0; 
+        this.newBook.soquyen = 0; 
+        this.newBook.tacgia = "";
+        this.newBook.namxuatban = "";
+        this.newBook.nhaxuatban = "";
+        this.message = "Sách đã được thêm thành công.";
+      } catch (error) {
+        this.message = "Đã xảy ra lỗi khi thêm sách.";
+        console.error(error);
+      }
+    },
+  },
+  created() {
+    this.getAllIssuer(); // Gọi phương thức getAllIssuer để lấy dữ liệu nhà xuất bản
+    this.message = "";
   }
 };
 </script>
@@ -89,5 +126,9 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+.trove {
+  background-color: #ffc107;
+  margin-left: 20px;
 }
 </style>

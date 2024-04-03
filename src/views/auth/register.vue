@@ -77,6 +77,7 @@ export default {
   methods: {
     async addUser() {
       try {
+        console.log(this.user)
         await UserService.create(this.user);
         this.user.hoten = "";
         this.user.password = "";
@@ -85,7 +86,7 @@ export default {
         this.user.gioitinh = "";
         this.user.diachi = "";
         this.message = "Bạn đã đăng ký thành công thành công.";
-
+        
       } catch (error) {
         this.message = "Đã xảy ra lỗi khi đăng ký.";
         console.log(error);

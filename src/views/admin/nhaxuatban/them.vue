@@ -11,6 +11,13 @@
         <input type="text" id="publisherAddress" v-model="newPublisher.address" required />
       </div>
       <button type="submit">Thêm</button>
+      <router-link
+              :to="{
+                name: 'quanlynhaxuatban'
+              }"
+              >
+        <button type="button" class="trove">Trở Về</button>
+      </router-link>
       <p>{{ message }}</p>
     </form>
   </div>
@@ -78,5 +85,9 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+.trove {
+  background-color: #ffc107;
+  margin-left: 20px;
 }
 </style>
