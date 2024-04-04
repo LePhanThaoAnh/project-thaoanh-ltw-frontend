@@ -10,7 +10,6 @@ import userlogin from "../views/auth/userLogin.vue";
 import Quanlysach from "../views/admin/sach/quanly.vue";
 import Themsach from "../views/admin/sach/them.vue";
 import Suasach from "../views/admin/sach/sua.vue";
-import Chitiet from "../views/admin/sach/chitiet.vue";
 import Quanlynhaxuatban from "../views/admin/nhaxuatban/quanly.vue";
 import Themnhaxuatban from "../views/admin/nhaxuatban/them.vue";
 import Suanhaxuatban from "../views/admin/nhaxuatban/sua.vue";
@@ -20,32 +19,35 @@ import Quanlyuser from "../views/admin/user/quanly.vue";
 
 const routes = [
   {
-    path: "/user/muonsach/:id",
+    path: "/user/muonsach/",
     name: "muonsach",
     component: Muonsach,
     props: true,
   },
   {
-    path: "/user/nhaxuatban",
+    path: "/user/nhaxuatban/:id",
     name: "nhaxuatban",
     component: Nhaxuatban,
+    props: true,
   },
   {
     path: "/user/lichsu",
     name: "lichsu",
     component: Lichsu,
-  },
-  {
-    path: "/chitietsach/:id",
-    name: "chitietsach",
-    component: Chitietsach,
-    props: true
+    
   },
   {
     path: "/",
     name: "trangchu",
     component: Trangchu,
   },
+  {
+    path: "/chitietsach/:id",
+    name: "chitietsach",
+    component: Chitietsach,
+    props: true,
+  },
+  
   
   {
     path: "/:pathMatch(.*)*",
@@ -75,11 +77,6 @@ const routes = [
     name: "suatrangthai",
     component: Suatrangthai,
     props: true,
-  },
-  {
-    path: "/admin/sach/chitiet",
-    name: "chitiet",
-    component: Chitiet,
   },
   {
     path: "/admin/sach/sua/:id",

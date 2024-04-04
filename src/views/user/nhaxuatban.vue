@@ -27,6 +27,9 @@
   import Header from '../../components/AppHeader.vue';
 
 export default {
+    props: {
+    id: { type: String, required: true },
+  },
     data() {
         return {
             books: [

@@ -8,19 +8,23 @@
       <input type="text" v-model="searchQuery" placeholder="Tìm kiếm">
     </div>
     <div class="books">
-      <div v-for="book in filteredBooks" :key="book.id" class="book">
+      <div v-for="book in filteredBooks" :key="book._id" class="book">
         <router-link class="gachchan" :to="{
           name: 'chitietsach',
-      }">
-        <h3>{{ book.title }}</h3>
-        <p>Năm sản xuất: {{ book.year }}</p>
-        <p>Nhà xuất bản: {{ book.publisher }}</p>
-        <p>Số quyển: {{ book.quantity }}</p>
-        <p>Đơn giá: {{ book.price }}</p>
+          params: { id: book._id }
+        }">
+        <h3>{{ book.tensach }}</h3>
+        <p>Mã sách: {{ book.masach }}</p>
+        <p>Tác giả: {{ book.tacgia }}</p>
+        <p>Số quyển: {{ book.soquyen }}</p>
+        <p>Đơn giá: {{ book.dongia }}</p>
+        <p>Năm sản xuất: {{ book.namxuatban }}</p>
+        <p>Nhà sản xuất: {{ book.nhaxuatban.name }}</p>
         </router-link>
-        <router-link class="gachchan" :to="{
+          <router-link class="gachchan" :to="{
           name: 'muonsach',
-      }"><button class="muonsach" >MƯỢN SÁCH</button></router-link>
+        }"><button class="muonsach">Mượn sách</button></router-link>
+
       </div>
     </div>
     <div class="pagination">
@@ -33,29 +37,16 @@
 
 <script>
 import Header from '../../components/AppHeader.vue';
+import BookService from "../../services/book.service";
 
 export default {
   data() {
     return {
       books: [
-        { id: 1, title: 'Vì sao đưa anh đến', year: 2022, publisher: 'Nhà xuất bản A', quantity: 10, price: 10000 },
-        { id: 2, title: 'Hóa ra anh vẫn ở đây', year: 2020, publisher: 'Nhà xuất bản B', quantity: 15, price: 15000 },
-        { id: 3, title: 'Năm tháng vội vã', year: 2021, publisher: 'Nhà xuất bản A', quantity: 8, price: 12000 },
-        { id: 4, title: 'Vì sao đưa anh đến', year: 2022, publisher: 'Nhà xuất bản A', quantity: 10, price: 10000 },
-        { id: 5, title: 'Hóa ra anh vẫn ở đây', year: 2020, publisher: 'Nhà xuất bản B', quantity: 15, price: 15000 },
-        { id: 6, title: 'Năm tháng vội vã', year: 2021, publisher: 'Nhà xuất bản A', quantity: 8, price: 12000 },
-        { id: 7, title: 'Vì sao đưa anh đến', year: 2022, publisher: 'Nhà xuất bản A', quantity: 10, price: 10000 },
-        { id: 8, title: 'Hóa ra anh vẫn ở đây', year: 2020, publisher: 'Nhà xuất bản B', quantity: 15, price: 15000 },
-        { id: 9, title: 'Năm tháng vội vã', year: 2021, publisher: 'Nhà xuất bản A', quantity: 8, price: 12000 },
-        { id: 10, title: 'Vì sao đưa anh đến', year: 2022, publisher: 'Nhà xuất bản A', quantity: 10, price: 10000 },
-        { id: 11, title: 'Hóa ra anh vẫn ở đây', year: 2020, publisher: 'Nhà xuất bản B', quantity: 15, price: 15000 },
-        { id: 12, title: 'Năm tháng vội vã', year: 2021, publisher: 'Nhà xuất bản A', quantity: 8, price: 12000 },
-        { id: 13, title: 'Hóa ra anh vẫn ở đây', year: 2020, publisher: 'Nhà xuất bản B', quantity: 15, price: 15000 },
-        { id: 14, title: 'Năm tháng vội vã', year: 2021, publisher: 'Nhà xuất bản A', quantity: 8, price: 12000 },
       ],
       searchQuery: '',
       currentPage: 1,
-      pageSize: 12, 
+      pageSize: 12,
     };
   },
   components: {
@@ -65,8 +56,8 @@ export default {
     filteredBooks() {
       let filtered = this.books;
       if (this.searchQuery) {
-        filtered = filtered.filter(book => 
-          book.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+        filtered = filtered.filter(book =>
+          book.tensach.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
       }
       return filtered;
@@ -84,6 +75,9 @@ export default {
     },
   },
   methods: {
+    async getAllBook() {
+      this.books = await BookService.getAll();
+    },
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
@@ -94,6 +88,9 @@ export default {
         this.currentPage++;
       }
     },
+  },
+  created() {
+    this.getAllBook();
   },
 };
 </script>
@@ -108,11 +105,13 @@ export default {
 .search-filter {
   margin-bottom: 1rem;
 }
+
 .books {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 1rem;
 }
+
 .book {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -120,23 +119,27 @@ export default {
   margin-bottom: 10px;
   margin-top: 0px;
 }
+
 .muonsach {
   border: none;
   bottom: 10px;
   cursor: pointer;
   background: linear-gradient(to right, #fc00ff, #00dbde);
 }
-.muonsach:hover{
 
-  background: linear-gradient(to right, #fc466b, #3f5efb); 
+.muonsach:hover {
+
+  background: linear-gradient(to right, #fc466b, #3f5efb);
 }
-h2{
+
+h2 {
   font-family: ui-rounded;
-    margin-top: 8px;
+  margin-top: 8px;
 }
-a.gachchan, a.gachchan{
+
+a.gachchan,
+a.gachchan {
   text-decoration: none;
   color: inherit;
 }
-
 </style>
