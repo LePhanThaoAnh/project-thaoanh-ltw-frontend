@@ -1,7 +1,7 @@
 <template>
   <div class="edit-publisher">
     <h2>Sửa Nhà Xuất Bản</h2>
-    <form @submit.prevent="submitNhaxuatban" :validation-schema="nhaxuatbanFormSchema">
+    <form @submit.prevent="submitNhaxuatban" >
       <div class="form-group">
         <label for="publisherName">Tên Nhà Xuất Bản:</label>
         <input type="text" id="publisherName" v-model="nhaxuatbanLocal.name" required />
@@ -22,10 +22,9 @@
      <p>{{ message }}</p>
   </div>
 </template>
-  
+
 <script>
 import IssuerService from "../../../services/issuer.service";
-import * as yup from "yup";
 import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -38,18 +37,12 @@ export default {
     id: { type: String, required: true },
   },
   data() {
-    const nhaxuatbanFormSchema = yup.object().shape({
-            name: yup
-                .string()
-                .required("Tên phải có giá trị.")
-                .min(2, "Tên phải ít nhất 2 ký tự.")
-                .max(50, "Tên có nhiều nhất 50 ký tự."),
-            address: yup.string().max(100, "Địa chỉ tối đa 100 ký tự."),
-        });
     return {
-      nhaxuatbanLocal: [],
-      message: "",
-      nhaxuatbanFormSchema, 
+      nhaxuatbanLocal: {
+      name: '',
+      address: '',
+    },
+      message: "", 
     };
   },
   methods: {
@@ -74,6 +67,7 @@ export default {
       try {
         await IssuerService.update(this.id, this.nhaxuatbanLocal);
         this.message = "Nhà xuất bản được cập nhật thành công.";
+        this.getNhaxuatban(this.id);
       } catch (error) {
         console.log(error);
         this.message = "Đã xảy ra lỗi khi cập nhật nhà xuất bản.";

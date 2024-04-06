@@ -22,14 +22,7 @@
       data() {
         return {
           book: {
-            id: 1,
-            title: 'Sách 1',
-            quantity: 10,
-            price: 10000,
-            author: 'Tác giả A',
-            publisher: 'Nhà xuất bản A',
-            year: 2022
-          }
+          },
         };
       },
     };

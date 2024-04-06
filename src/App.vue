@@ -1,6 +1,6 @@
 <!-- App.vue -->
 <template>
-  <div id="app">
+  <div id="app" >
     <!-- <Header /> -->
     <router-view></router-view>
   </div>
@@ -14,3 +14,8 @@ export default {
   // }
 }
 </script>
+<style >
+body{
+  background-color: #f4efef;
+}
+</style>

@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     async deletePublisher(publisher) {
-      if (confirm("Bạn muốn xóa Liên hệ này?")) {
+      if (confirm("Bạn muốn xóa Nhà xuất bản này?")) {
         try {
           await IssuerService.delete(publisher._id);
           this.publishers = this.publishers.filter(

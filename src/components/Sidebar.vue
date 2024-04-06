@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar">
       <div class="logo">
-        <h2>Admin Panel</h2>
+        <h2>Admin TABOOK</h2>
       </div>
       <ul class="list-group">
         <router-link to="/admin/nhaxuatban/quanly"> <li class="list-group-item">Quản lý Nhà Xuất Bản</li></router-link>

@@ -1,35 +1,33 @@
-<!-- BookList.vue -->
-
 <template>
   <Header />
   <div class="book-list">
+    
     <h2>Sách mới cập nhật</h2>
     <div class="search-filter">
       <input type="text" v-model="searchQuery" placeholder="Tìm kiếm">
     </div>
     <div class="books">
-      <div v-for="book in filteredBooks" :key="book._id" class="book">
+      <div v-for="book in paginatedBooks" :key="book._id" class="book">
         <router-link class="gachchan" :to="{
           name: 'chitietsach',
           params: { id: book._id }
         }">
-        <h3>{{ book.tensach }}</h3>
-        <p>Mã sách: {{ book.masach }}</p>
-        <p>Tác giả: {{ book.tacgia }}</p>
-        <p>Số quyển: {{ book.soquyen }}</p>
-        <p>Đơn giá: {{ book.dongia }}</p>
-        <p>Năm sản xuất: {{ book.namxuatban }}</p>
-        <p>Nhà sản xuất: {{ book.nhaxuatban.name }}</p>
+          <h3>{{ book.tensach }}</h3>
+          <p>Mã sách: {{ book.masach }}</p>
+          <p>Tác giả: {{ book.tacgia }}</p>
+          <p>Số quyển: {{ book.soquyen }}</p>
+          <p>Đơn giá: {{ formatPrice(book.dongia) }}</p>
         </router-link>
-          <router-link class="gachchan" :to="{
-          name: 'muonsach',
-        }"><button class="muonsach">Mượn sách</button></router-link>
-
+        <router-link class="gachchan" :to="{ name: 'muonsach' }">
+          <div>
+            <button class="muonsach">Mượn sách</button>
+          </div>
+        </router-link>
       </div>
     </div>
-    <div class="pagination">
+    <div class="pagination" style="margin:0 0 9px 754px;">
       <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
-      <span>Trang {{ currentPage }} / {{ totalPages }}</span>
+      <span style="padding:0 5px 0 5px;">Trang {{ currentPage }} / {{ totalPages }}</span>
       <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
     </div>
   </div>
@@ -42,8 +40,7 @@ import BookService from "../../services/book.service";
 export default {
   data() {
     return {
-      books: [
-      ],
+      books: [],
       searchQuery: '',
       currentPage: 1,
       pageSize: 12,
@@ -62,9 +59,6 @@ export default {
       }
       return filtered;
     },
-    publishers() {
-      return [...new Set(this.books.map(book => book.publisher))];
-    },
     totalPages() {
       return Math.ceil(this.filteredBooks.length / this.pageSize);
     },
@@ -75,6 +69,16 @@ export default {
     },
   },
   methods: {
+    formatPrice(price) {
+      // Ép kiểu giá trị đơn giá sang số
+      const priceNumber = parseFloat(price);
+      // Kiểm tra nếu không phải là một số hợp lệ thì trả về giá trị ban đầu
+      if (isNaN(priceNumber)) {
+        return price;
+      }
+      // Định dạng giá tiền sang "40.000 vnđ"
+      return priceNumber.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    },
     async getAllBook() {
       this.books = await BookService.getAll();
     },
@@ -94,6 +98,8 @@ export default {
   },
 };
 </script>
+
+
 
 
 <style>

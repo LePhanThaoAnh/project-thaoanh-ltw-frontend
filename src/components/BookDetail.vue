@@ -8,7 +8,7 @@
         <p><strong>Mã sách:</strong> {{ book.masach }}</p>
         <p><strong>Tên sách:</strong> {{ book.tensach }}</p>
         <p><strong>Số lượng:</strong> {{ book.soquyen }}</p>
-        <p><strong>Đơn giá:</strong> {{ book.dongia }}</p>
+        <p><strong>Đơn giá:</strong> {{ formatPrice(book.dongia)  }}</p>
         <p><strong>Tác giả:</strong> {{ book.tacgia }}</p>
         <p><strong>Năm sản xuất:</strong> {{ book.namxuatban }}</p>
         <p><strong>Nhà sản xuất:</strong> {{ book.nhaxuatban.name }}</p>
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      book: {}, // Sửa tên biến từ books thành book
+      book: {}, 
     };
   },
   components: {
@@ -41,9 +41,19 @@ export default {
         console.error(error);
       }
     },
+    formatPrice(price) {
+      // Ép kiểu giá trị đơn giá sang số
+      const priceNumber = parseFloat(price);
+      // Kiểm tra nếu không phải là một số hợp lệ thì trả về giá trị ban đầu
+      if (isNaN(priceNumber)) {
+        return price;
+      }
+      // Định dạng giá tiền sang "40.000 vnđ"
+      return priceNumber.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    },
   },
   created() {
-    this.getBookById(id); // Sử dụng this.id
+    this.getBookById(this.id); // Sử dụng this.id
   }
 };
 </script>

@@ -141,5 +141,9 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+.trove {
+  background-color: #ffc107;
+  margin-left: 20px;
+}
 </style>
   
