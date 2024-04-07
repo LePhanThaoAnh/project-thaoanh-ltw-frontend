@@ -44,10 +44,14 @@ export default {
     computed: {
         filteredBooks() {
             if (this.selectedPublisher) {
-                return this.books.filter(book => book.publisher._id === this.selectedPublisher);
+                let books = this.books.filter( (book) =>{ 
+                    return  book.nhaxuatban._id === this.selectedPublisher
+                });
+                return books;
             }
             return this.books;
         }
+
     },
     methods: {
         async getAllIssuer() {
@@ -58,7 +62,6 @@ export default {
             }
         },
         formatPrice(price) {
-      // Ép kiểu giá trị đơn giá sang số
       const priceNumber = parseFloat(price);
       // Kiểm tra nếu không phải là một số hợp lệ thì trả về giá trị ban đầu
       if (isNaN(priceNumber)) {

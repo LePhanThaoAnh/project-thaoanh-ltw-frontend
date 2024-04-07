@@ -1,5 +1,5 @@
 <template>
-  <div class="register-form">
+  <div class="register-form " >
     <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
     <form @submit.prevent="addUser">
       <div class="form-group">
@@ -52,6 +52,9 @@
         <input type="password" id="password" v-model="user.password" required>
       </div>
       <button type="submit" class="dangky_thatsu">Đăng ký</button>
+      <router-link :to="{
+        name: 'UserLogin',
+      }"><button type="submit" class="dangnhapthatsu">Đăng nhập</button></router-link>
       <p>{{ message }}</p>
     </form>
   </div>
@@ -85,7 +88,7 @@ export default {
         this.user.ngaysinh = "";
         this.user.gioitinh = "";
         this.user.diachi = "";
-        this.message = "Bạn đã đăng ký thành công thành công.";
+        this.message = "Bạn đã đăng ký  thành công.";
         
       } catch (error) {
         this.message = "Đã xảy ra lỗi khi đăng ký.";
@@ -144,5 +147,23 @@ input[type="date"] {
 .radio {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.dangnhapthatsu {
+  background: linear-gradient(to right, #fc00ff, #00dbde);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 199px;
+}
+
+.dangnhapthatsu:hover {
+
+  background: linear-gradient(to right, #fc466b, #3f5efb);
+}
+.wrapper{
+  background-color: #f4efef !important; 
 }
 </style>

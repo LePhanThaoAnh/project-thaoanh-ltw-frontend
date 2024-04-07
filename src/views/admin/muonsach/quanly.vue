@@ -19,13 +19,19 @@
         <tbody>
           <tr v-for="(borrowing, index) in borrowings" :key="index">
             <td>{{ index + 1 }}</td>
-            <td>{{ borrowing.borrower }}</td>
-            <td>{{ borrowing.book }}</td>
-            <td>{{ borrowing.borrowDate }}</td>
-            <td>{{ borrowing.returnDate }}</td>
-            <td>{{ borrowing.status }}</td>
+            <td>{{ borrowing.madocgia.hoten }}</td>
+            <td>{{ borrowing.masach.tensach }}</td>
+            <td>{{ borrowing.ngaymuon }}</td>
+            <td>{{ borrowing.ngaytra }}</td>
+            <td>{{ borrowing.trangthai }}</td>
             <td>
-              <button class="sua" @click="editStatus(borrowing)">Sửa Trạng Thái</button>
+              <router-link
+              :to="{
+                name: 'suatrangthai',
+                params: { id: borrowing._id }
+              }"
+              ><button class="sua" @click="editStatus(borrowing)">Sửa Trạng Thái</button> </router-link>
+              
             </td>
           </tr>
         </tbody>
@@ -36,6 +42,7 @@
   
   <script>
 import Sidebar from "@/components/Sidebar.vue";
+import BorrowingService from '@/services/borrowing.service';
 
 export default {
   components: {
@@ -44,20 +51,6 @@ export default {
   data() {
     return {
       borrowings: [
-        {
-          borrower: "Người Mượn A",
-          book: "Sách A",
-          borrowDate: "01/01/2023",
-          returnDate: "31/01/2023",
-          status: "Đã Mượn",
-        },
-        {
-          borrower: "Người Mượn B",
-          book: "Sách B",
-          borrowDate: "05/02/2023",
-          returnDate: "28/02/2023",
-          status: "Đã Mượn",
-        },
       ],
     };
   },
@@ -65,6 +58,13 @@ export default {
     editStatus(borrowing) {
       this.$router.push({ name: "suatrangthai" });
     },
+    async getAllBorrow(){
+      this.borrowings = await BorrowingService.getAll();
+    },
+
+  },
+  created() {
+    this.getAllBorrow();
   },
 };
 </script>

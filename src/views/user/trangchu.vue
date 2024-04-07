@@ -18,7 +18,9 @@
           <p>Số quyển: {{ book.soquyen }}</p>
           <p>Đơn giá: {{ formatPrice(book.dongia) }}</p>
         </router-link>
-        <router-link class="gachchan" :to="{ name: 'muonsach' }">
+        <router-link class="gachchan" :to="{ 
+          name: 'muonsach',
+          params: { id: book._id } }">
           <div>
             <button class="muonsach">Mượn sách</button>
           </div>

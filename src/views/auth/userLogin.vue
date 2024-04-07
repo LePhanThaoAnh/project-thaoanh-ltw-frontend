@@ -48,7 +48,8 @@ export default {
   methods: {
     async submitForm() {
       try {
-        await UserService.login(this.user); // Sử dụng UserService trực tiếp
+        let user = await UserService.login(this.user); // Sử dụng UserService trực tiếp
+        localStorage.setItem("user", JSON.stringify(user));
         this.loginSuccessMessage = 'Đăng nhập thành công!';
         // Chuyển hướng sau một khoảng thời gian
         setTimeout(() => {
@@ -113,4 +114,5 @@ input[type="password"] {
 
   background: linear-gradient(to right, #fc466b, #3f5efb);
 }
+
 </style>

@@ -8,11 +8,9 @@
       <nav>
         <router-link class="gachchan" to="/">Trang chủ</router-link>
         <router-link class="gachchan" to="/user/lichsu">Xem lịch sử mượn sách</router-link>
-        <select @change="filterByPublisher">
-          <option value="">Chọn nhà xuất bản</option>
-          <option v-for="publisher in publishers" :value="publisher._id" :key="publisher._id">{{ publisher.name }}</option>
-        </select>
-        <router-link class="gachchan" to="/login">Đăng xuất</router-link>
+        <router-link class="gachchan" to="/user/nhaxuatban">Lọc theo nhà xuất bản</router-link>
+        <button style="background-color: #cbcaca;
+        color: #383468;font-size: 18px;" class="gachchan" @click="Logout">Đăng xuất</button>
       </nav>
     </div>
   </header>
@@ -20,14 +18,14 @@
 
 <script>
 import IssuerService from "../services/issuer.service";
-
+import UserService from "@/services/user.service";
 export default {
   data() {
     return {
       publishers: [],
     };
   },
-
+  
   methods: {
     
     async getAllIssuer() {
@@ -37,15 +35,17 @@ export default {
         console.error("Error fetching publishers: ", error);
       }
     },
-    async filterByPublisher(event) {
-      const selectedPublisherId = event.target.value;
-      console.log(selectedPublisherId)
-      if (selectedPublisherId) {
-        this.$router.push({ path: `/user/nhaxuatban/${selectedPublisherId}` });
-      } else {
-        this.$router.push({ path: '/user' });
+
+  
+    async Logout() {
+      try {
+        await UserService.logout(); // Gọi phương thức logout từ service
+        this.$router.push('/login'); // Chuyển hướng đến trang đăng nhập sau khi logout thành công
+      } catch (error) {
+        console.error('Error logging out:', error);
       }
-    },
+    }
+
   },
   mounted() {
     this.getAllIssuer();

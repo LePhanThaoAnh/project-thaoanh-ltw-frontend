@@ -2,7 +2,7 @@
     <div class="admin-page">
         <Sidebar />
         <div class="main-content">
-            <h2>Quản lý Người Dùng</h2>
+            <h2>Quản lý Người Đọc</h2>
             <table>
                 <thead>
                     <tr>
@@ -17,11 +17,11 @@
                 <tbody>
                     <tr v-for="(user, index) in users" :key="index">
                         <td>{{ index + 1 }}</td>
-                        <td>{{ user.fullName }}</td>
-                        <td>{{ user.gender }}</td>
-                        <td>{{ user.birthDate }}</td>
-                        <td>{{ user.phoneNumber }}</td>
-                        <td>{{ user.address }}</td>
+                        <td>{{ user.hoten }}</td>
+                        <td>{{ user.gioitinh }}</td>
+                        <td>{{ formatDate(user.ngaysinh) }}</td>
+                        <td>{{ user.sodienthoai }}</td>
+                        <td>{{ user.diachi }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -31,31 +31,31 @@
 
 <script>
 import Sidebar from "@/components/Sidebar.vue"; // Đường dẫn đến component Sidebar
-
+import UserService from "@/services/user.service";
 export default {
     components: {
         Sidebar
     },
     data() {
         return {
-            users: [
-                {
-                    fullName: "Nguyễn Văn A",
-                    gender: "Nam",
-                    birthDate: "01/01/1990",
-                    phoneNumber: "0123456789",
-                    address: "Số nhà 123, đường ABC, quận XYZ"
-                },
-                {
-                    fullName: "Trần Thị B",
-                    gender: "Nữ",
-                    birthDate: "02/02/1995",
-                    phoneNumber: "0987654321",
-                    address: "Số nhà 456, đường XYZ, quận ABC"
-                }
-                // Thêm dữ liệu người dùng khác nếu cần
-            ]
+            users: [],
         };
+    },
+    methods: {
+        async getAllUser() {
+            this.users = await UserService.getAll();
+        },
+        formatDate(dateString) {
+            if (!dateString) return ''; // Trả về chuỗi rỗng nếu ngày sinh không tồn tại
+            const date = new Date(dateString); // Tạo đối tượng Date từ chuỗi ngày sinh
+            const day = date.getDate(); // Lấy ngày
+            const month = date.getMonth() + 1; // Lấy tháng (lưu ý phải cộng thêm 1 vì tháng bắt đầu từ 0)
+            const year = date.getFullYear(); // Lấy năm
+            return `${day} - ${month} - ${year}`; // Trả về chuỗi ngày - tháng - năm
+        }
+    },
+    created() {
+        this.getAllUser();
     }
 };
 </script>
@@ -74,9 +74,11 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .sidebar {
     background-color: #f2f2f2;
-  }
+}
+
 th,
 td {
     border: 1px solid #ccc;

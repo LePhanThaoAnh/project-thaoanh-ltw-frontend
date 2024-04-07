@@ -19,13 +19,13 @@ import Quanlyuser from "../views/admin/user/quanly.vue";
 
 const routes = [
   {
-    path: "/user/muonsach/",
+    path: "/user/muonsach/:id",
     name: "muonsach",
     component: Muonsach,
     props: true,
   },
   {
-    path: "/user/nhaxuatban/:id",
+    path: "/user/nhaxuatban",
     name: "nhaxuatban",
     component: Nhaxuatban,
     props: true,
@@ -64,7 +64,7 @@ const routes = [
     name: 'UserLogin', 
     component: userlogin,
   },
-
+  
 
   //admin
   {

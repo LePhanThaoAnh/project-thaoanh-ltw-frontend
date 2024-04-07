@@ -41,6 +41,7 @@
       >
         <button type="button" class="trove">Trở Về</button>
       </router-link>
+      <p>{{ message }}</p>
     </form>
   </div>
 </template>
@@ -61,7 +62,16 @@ export default {
   },
   data() {
     return {
-      bookLocal: {},
+      bookLocal: {
+        masach: '',
+        tensach: '',
+        dongia: 0,
+        soquyen: 0,
+        tacgia: '',
+        year: new Date().getFullYear(),
+        namxuatban: '',
+        nhaxuatban: '',
+      },
       nhaxuatbans: [], 
       message: "",
       selectedPublisher: "",
@@ -72,7 +82,7 @@ export default {
     async getBook(id) {
       try {
         this.bookLocal = await BookService.get(id);
-
+        this.selectedPublisher = this.bookLocal.nhaxuatban;
       } catch (error) {
         console.log(error);
         // Chuyển hướng sang trang NotFound đồng thời giữ nguyên URL

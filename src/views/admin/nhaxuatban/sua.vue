@@ -67,7 +67,6 @@ export default {
       try {
         await IssuerService.update(this.id, this.nhaxuatbanLocal);
         this.message = "Nhà xuất bản được cập nhật thành công.";
-        this.getNhaxuatban(this.id);
       } catch (error) {
         console.log(error);
         this.message = "Đã xảy ra lỗi khi cập nhật nhà xuất bản.";

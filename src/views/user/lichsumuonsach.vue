@@ -4,10 +4,10 @@
     <h2>Lịch sử mượn sách</h2>
     <div class="history-list">
       <div v-for="(borrow, index) in borrowHistory" :key="index" class="borrow-item">
-        <p><strong>Tên sách:</strong> {{ borrow.bookTitle }}</p>
-        <p><strong>Ngày mượn:</strong> {{ borrow.borrowDate }}</p>
-        <p><strong>Ngày trả:</strong> {{ borrow.returnDate }}</p>
-        <p><strong>Trạng thái:</strong> {{ borrow.status }}</p>
+        <p><strong>Tên sách:</strong> {{ borrow.masach.tensach }}</p>
+        <p><strong>Ngày mượn:</strong> {{ borrow.ngaymuon }}</p>
+        <p><strong>Ngày trả:</strong> {{ borrow.ngaytra }}</p>
+        <p><strong>Trạng thái:</strong> {{ borrow.trangthai }}</p>
       </div>
     </div>
   </div>
@@ -15,20 +15,29 @@
 
 <script>
 import Header from '../../components/AppHeader.vue';
-
+import BorrowingService from '@/services/borrowing.service';
 export default {
   data() {
     return {
       borrowHistory: [
-        { borrowDate: '2024-03-01', returnDate: '2024-03-10', bookTitle: 'Sách 1', status: 'Đã trả' },
-        { borrowDate: '2024-03-05', returnDate: '2024-03-15', bookTitle: 'Sách 2', status: 'Đang mượn' },
-        { borrowDate: '2024-03-10', returnDate: '2024-03-20', bookTitle: 'Sách 3', status: 'Đã trả' },
-        // Thêm dữ liệu lịch sử mượn sách khác tại đây
-      ]
+      ],
     };
   },
   components: {
     Header,
+  },
+  methods:{
+    async getAllBorrowById(){
+      let user = JSON.parse(localStorage.getItem("user"));
+      let id = user._id;
+      console.log(id)
+      this.borrowHistory = await BorrowingService.get(id);
+      // this.borrowHistory.push(muon);
+      console.log(this.borrowHistory)
+    }
+  },
+  created() {
+    this.getAllBorrowById();
   },
 };
 </script>

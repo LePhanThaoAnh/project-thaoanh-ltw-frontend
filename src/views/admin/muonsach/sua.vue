@@ -5,29 +5,56 @@
       <div class="form-group">
         <label for="status">Chọn Trạng Thái:</label>
         <select v-model="selectedStatus" id="status">
-          <option value="Đang Mượn">Đang Mượn</option>
+          <option value="Đã Mượn">Đã Mượn</option>
           <option value="Đã Trả">Đã Trả</option>
         </select>
       </div>
-      <button type="submit">Lưu</button>
+      
+      <button type="submit" >Lưu</button>
+      <router-link
+              :to="{
+                name: 'quanlymuonsach'
+              }"
+              >
+        <button type="button" class="trove">Trở Về</button>
+      </router-link>
     </form>
   </div>
 </template>
   
   <script>
+import BorrowingService from '@/services/borrowing.service';
 export default {
+  props: {
+    id: { type: String, required: true },
+  },
   data() {
     return {
-      selectedStatus: "Đang Mượn",
+      borrow:{},
+      selectedStatus: "Đã Mượn",
     };
   },
   methods: {
-    saveStatus() {
-      // Xử lý logic để lưu trạng thái mượn sách
-      console.log("Trạng Thái Mượn Sách:", this.selectedStatus);
-      // Sau khi lưu xong, có thể thực hiện cập nhật dữ liệu hoặc chuyển hướng trở lại trang quản lý mượn sách
+    async getBorrow() {
+      try {
+        this.borrow = await BorrowingService.get(this.id);
+
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async saveStatus() {
+      try {
+      await BorrowingService.update(this.id, {trangthai: this.selectedStatus});
+      console.log('Đã cập nhật trạng thái thành công.');
+    } catch (error) {
+      console.error('Lỗi khi cập nhật trạng thái:', error);
+    }
     },
   },
+  created() {
+    this.getBorrow(this.id);
+  }
 };
 </script>
   

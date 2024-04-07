@@ -14,7 +14,15 @@
         <p><strong>Nhà sản xuất:</strong> {{ book.nhaxuatban.name }}</p>
       </div>
     </div>
+    <router-link
+        :to="{
+          name: 'trangchu',
+        }"
+      >
+        <button type="button" class="trovetrangchu">Trở Về</button>
+      </router-link>
   </div>
+  
 </template>
 
 <script>
@@ -72,5 +80,9 @@ export default {
 
 .info {
   margin-bottom: 10px;
+}
+.trovetrangchu{
+  margin-top: 6px;
+  background-color: gray;
 }
 </style>
