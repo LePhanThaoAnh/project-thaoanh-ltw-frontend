@@ -1,6 +1,7 @@
 <template>
   <div class="admin-panel">
     <Sidebar />
+    <div class="nensach">
     <div class="main-content">
       <h2>Quản lý Sách</h2>
       <div class="search-bar">
@@ -55,16 +56,17 @@
       </table>
       <div class="pagination phantrang">
         <button @click="previousPage" :disabled="currentPage === 1">
-          Previous
+          Trang trước
         </button>
         <span style="padding-right: 5px"
           >Trang {{ currentPage }} / {{ totalPages }}
         </span>
         <button @click="nextPage" :disabled="currentPage === totalPages">
-          Next
+          Kế tiếp
         </button>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -163,7 +165,13 @@ export default {
 .sidebar {
   background-color: #f2f2f2;
 }
-
+.nensach{
+  background-color: white;
+  width: 100%;
+  height: 800px;
+  border-radius: 5px;
+  padding: 20px;
+}
 .main-content {
   flex: 1;
   padding: 20px;

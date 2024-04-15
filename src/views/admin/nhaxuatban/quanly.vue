@@ -1,6 +1,7 @@
 <template>
   <div class="admin-manage-publishers">
     <Sidebar />
+    <div class="nhaxuatban">
     <div class="main-content">
       <h2>Quản lý Nhà Xuất Bản</h2>
       <router-link to="/admin/nhaxuatban/them">
@@ -37,6 +38,7 @@
         </tbody>
       </table>
     </div>
+  </div>
   </div>
 </template>
   
@@ -80,7 +82,13 @@ export default {
 .admin-manage-publishers {
   display: flex;
 }
-
+.nhaxuatban{
+  background-color: white;
+  width: 100%;
+  height: 800px;
+  border-radius: 5px;
+  padding: 20px;
+}
 .sidebar {
   padding: 20px;
   background-color: #f2f2f2;

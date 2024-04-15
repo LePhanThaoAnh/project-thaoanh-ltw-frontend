@@ -64,7 +64,6 @@ export default {
         madocgia: this.user._id,
         masach: this.book._id,
       }
-      console.log(borrow)
       try{
         await BorrowingService.create(borrow);
         this.ngaymuon = "";

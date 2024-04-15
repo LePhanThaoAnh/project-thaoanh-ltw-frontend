@@ -1,4 +1,5 @@
 <template>
+  <div class="nenthemsach">
   <div class="add-book">
     <h2>Thêm Sách</h2>
     <form @submit.prevent="addBook">
@@ -44,6 +45,7 @@
       <p>{{ message }}</p>
     </form>
   </div>
+</div>
 </template>
 <script>
 import IssuerService from "../../../services/issuer.service";
@@ -109,7 +111,13 @@ label {
   display: block;
   font-weight: bold;
 }
-
+.nenthemsach{
+  background-color: white;
+  margin: 30px auto;
+  width: 900px;
+  border-radius: 5px;
+  padding: 20px;
+}
 input[type="text"],
 input[type="number"],
 select {

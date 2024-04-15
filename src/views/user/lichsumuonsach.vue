@@ -1,5 +1,6 @@
 <template>
   <Header />
+  <div class="maunenlichsu">
   <div class="borrow-history">
     <h2>Lịch sử mượn sách</h2>
     <div class="history-list">
@@ -11,6 +12,8 @@
       </div>
     </div>
   </div>
+  
+</div>
 </template>
 
 <script>
@@ -47,7 +50,14 @@ export default {
   max-width: 800px;
   margin: auto;
 }
+.maunenlichsu{
+  background-color: white;
+  margin: 20px auto;
+  width: 1200px;
+  border-radius: 5px;
+  padding: 20px;
 
+}
 .history-list {
   margin-top: 20px;
 }

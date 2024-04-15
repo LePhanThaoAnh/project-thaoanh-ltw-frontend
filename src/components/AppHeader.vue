@@ -1,18 +1,17 @@
 <!-- Header.vue -->
 <template>
   <header class="header">
-    <div class="container">
       <router-link class="gachchan" to="/">
-        <h1>Quản lý Thư Viện</h1>
+        <h1 class="phan1">Thư Viện TA</h1>
       </router-link>
-      <nav>
+      <nav class="phan2">
         <router-link class="gachchan" to="/">Trang chủ</router-link>
         <router-link class="gachchan" to="/user/lichsu">Xem lịch sử mượn sách</router-link>
         <router-link class="gachchan" to="/user/nhaxuatban">Lọc theo nhà xuất bản</router-link>
+        <router-link class="gachchan" to="/user/quydinh">Quy định mượn sách</router-link>
         <button style="background-color: #cbcaca;
-        color: #383468;font-size: 18px;" class="gachchan" @click="Logout">Đăng xuất</button>
+        color: #383468;font-size: 18px; font-size: 1.4rem;" class="gachchan" @click="Logout">Đăng xuất</button>
       </nav>
-    </div>
   </header>
 </template>
 
@@ -59,19 +58,27 @@ export default {
   background-color: #cbcaca;
   color: #383468;
   padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .container {
   display: flex;
-  justify-content: space-between;
+  
   align-items: center;
 }
-
+.phan1{
+  margin-left: 30px;
+}
+.phan2{
+  margin-right: 20px;
+  font-size: 1.2rem;
+}
 nav a {
   color: #fff;
   margin-left: 1rem;
   text-decoration: none;
-  font-size: large;
+  font-size: larger;
 }
 
 nav a:hover {
@@ -89,5 +96,6 @@ a.gachchan,
 a.gachchan {
   text-decoration: none;
   color: inherit;
+  
 }
 </style>

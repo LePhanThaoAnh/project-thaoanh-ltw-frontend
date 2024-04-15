@@ -1,6 +1,7 @@
 <!-- LoginComponent.vue -->
 <template>
-  <div class="login-form">
+  <div class="formdangnhap">
+  <div class="login-form ">
     <h2>ĐỌC GIẢ ĐĂNG NHẬP</h2>
     <form @submit.prevent="submitForm">
       <div class="form-group">
@@ -31,6 +32,7 @@
       {{ loginSuccessMessage }}
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -65,6 +67,14 @@ export default {
 </script>
 
 <style>
+.formdangnhap{
+    margin: 100px auto;
+    background-color: white;
+    width: 500px;
+    height: 350px;
+    padding-top: 30px;
+    border-radius: 5px;
+}
 .login-form {
   max-width: 400px;
   margin: auto;
@@ -113,6 +123,10 @@ input[type="password"] {
 .dangky:hover {
 
   background: linear-gradient(to right, #fc466b, #3f5efb);
+}
+
+body{
+  background-color: rgb(248, 239, 247) !important;
 }
 
 </style>

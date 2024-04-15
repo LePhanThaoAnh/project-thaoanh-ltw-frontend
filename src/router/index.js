@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Trangchu from "@/views/user/trangchu.vue";
 import Muonsach from "@/views/user/muonsach.vue";
 import Nhaxuatban from "@/views/user/nhaxuatban.vue";
+import Quydinh from "@/views/user/quydinhmuonsach.vue";
 import Lichsu from "@/views/user/lichsumuonsach.vue";
 import Chitietsach from "@/components/BookDetail.vue";
 import dangky from "../views/auth/register.vue";
@@ -29,6 +30,11 @@ const routes = [
     name: "nhaxuatban",
     component: Nhaxuatban,
     props: true,
+  },
+  {
+    path: "/user/quydinh",
+    name: "quydinh",
+    component: Quydinh,
   },
   {
     path: "/user/lichsu",

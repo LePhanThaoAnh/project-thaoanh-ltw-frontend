@@ -1,4 +1,5 @@
 <template>
+  <div class="formdangky">
   <div class="register-form " >
     <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
     <form @submit.prevent="addUser">
@@ -58,6 +59,7 @@
       <p>{{ message }}</p>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -107,7 +109,14 @@ export default {
   max-width: 400px;
   margin: auto;
 }
-
+.formdangky{
+  margin: 100px auto;
+  background-color: white;
+  width: 500px;
+  height: 690px;
+  padding-top: 30px;
+  border-radius: 5px;
+}
 .form-group {
   margin-bottom: 1rem;
 }

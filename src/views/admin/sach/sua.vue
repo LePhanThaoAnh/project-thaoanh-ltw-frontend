@@ -1,4 +1,5 @@
 <template>
+  <div class="nensuasach">
   <div class="edit-book">
     <h2>Sửa Sách</h2>
     <form @submit.prevent="updateBook">
@@ -44,6 +45,7 @@
       <p>{{ message }}</p>
     </form>
   </div>
+</div>
 </template>
   
   <script>
@@ -133,7 +135,13 @@ label {
   display: block;
   font-weight: bold;
 }
-
+.nensuasach{
+  background-color: white;
+  margin: 30px auto;
+  width: 900px;
+  border-radius: 5px;
+  padding: 20px;
+}
 input[type="text"],
 input[type="number"],
 select {

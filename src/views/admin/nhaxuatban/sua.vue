@@ -1,25 +1,25 @@
 <template>
-  <div class="edit-publisher">
-    <h2>Sửa Nhà Xuất Bản</h2>
-    <form @submit.prevent="submitNhaxuatban" >
-      <div class="form-group">
-        <label for="publisherName">Tên Nhà Xuất Bản:</label>
-        <input type="text" id="publisherName" v-model="nhaxuatbanLocal.name" required />
-      </div>
-      <div class="form-group">
-        <label for="publisherAddress">Địa Chỉ:</label>
-        <input type="text" id="publisherAddress" v-model="nhaxuatbanLocal.address" required />
-      </div>
-      <button type="submit">Lưu</button>
-      <router-link
-              :to="{
-                name: 'quanlynhaxuatban'
-              }"
-              >
-        <button type="button" class="trove">Trở Về</button>
-      </router-link>
-    </form>   
-     <p>{{ message }}</p>
+  <div class="maunenthem">
+    <div class="edit-publisher ">
+      <h2>Sửa Nhà Xuất Bản</h2>
+      <form @submit.prevent="submitNhaxuatban">
+        <div class="form-group">
+          <label for="publisherName">Tên Nhà Xuất Bản:</label>
+          <input type="text" id="publisherName" v-model="nhaxuatbanLocal.name" required />
+        </div>
+        <div class="form-group">
+          <label for="publisherAddress">Địa Chỉ:</label>
+          <input type="text" id="publisherAddress" v-model="nhaxuatbanLocal.address" required />
+        </div>
+        <button type="submit">Lưu</button>
+        <router-link :to="{
+          name: 'quanlynhaxuatban'
+        }">
+          <button type="button" class="trove">Trở Về</button>
+        </router-link>
+      </form>
+      <p>{{ message }}</p>
+    </div>
   </div>
 </template>
 
@@ -29,20 +29,20 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
   components: {
-        Form,
-        Field,
-        ErrorMessage,
-    },
+    Form,
+    Field,
+    ErrorMessage,
+  },
   props: {
     id: { type: String, required: true },
   },
   data() {
     return {
       nhaxuatbanLocal: {
-      name: '',
-      address: '',
-    },
-      message: "", 
+        name: '',
+        address: '',
+      },
+      message: "",
     };
   },
   methods: {
@@ -85,7 +85,13 @@ export default {
   max-width: 400px;
   margin: auto;
 }
-
+.maunenthem{
+  background-color: white;
+  margin: 30px auto;
+  width: 900px;
+  border-radius: 5px;
+  padding: 20px;
+}
 .form-group {
   margin-bottom: 20px;
 }
@@ -110,6 +116,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .trove {
   background-color: #ffc107;
   margin-left: 20px;

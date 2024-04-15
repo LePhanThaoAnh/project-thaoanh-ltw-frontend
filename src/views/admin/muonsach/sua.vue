@@ -1,4 +1,5 @@
 <template>
+  <div class="nensua">
   <div class="edit-borrowing-status">
     <h2>Sửa Trạng Thái Mượn Sách</h2>
     <form @submit.prevent="saveStatus">
@@ -7,6 +8,7 @@
         <select v-model="selectedStatus" id="status">
           <option value="Đã Mượn">Đã Mượn</option>
           <option value="Đã Trả">Đã Trả</option>
+          <option value="Trả muộn">Trả muộn</option>
         </select>
       </div>
       
@@ -19,7 +21,9 @@
         <button type="button" class="trove">Trở Về</button>
       </router-link>
     </form>
+    <p>{{ message }}</p>
   </div>
+</div>
 </template>
   
   <script>
@@ -32,13 +36,13 @@ export default {
     return {
       borrow:{},
       selectedStatus: "Đã Mượn",
+      message: "",
     };
   },
   methods: {
     async getBorrow() {
       try {
         this.borrow = await BorrowingService.get(this.id);
-
       } catch (error) {
         console.log(error);
       }
@@ -46,7 +50,7 @@ export default {
     async saveStatus() {
       try {
       await BorrowingService.update(this.id, {trangthai: this.selectedStatus});
-      console.log('Đã cập nhật trạng thái thành công.');
+      this.message= 'Đã cập nhật trạng thái thành công.';
     } catch (error) {
       console.error('Lỗi khi cập nhật trạng thái:', error);
     }
@@ -67,7 +71,13 @@ export default {
 .form-group {
   margin-bottom: 20px;
 }
-
+.nensua{
+  background-color: white;
+  margin: 30px auto;
+  width: 900px;
+  border-radius: 5px;
+  padding: 20px;
+}
 label {
   display: block;
   font-weight: bold;
@@ -79,7 +89,10 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
+.trove {
+  background-color: #ffc107;
+  margin-left: 20px;
+}
 button {
   background-color: #007bff;
   color: #fff;

@@ -1,4 +1,5 @@
 <template>
+  <div class="maunenthem">
   <div class="add-publisher">
     <h2>Thêm Nhà Xuất Bản</h2>
     <form @submit.prevent="addPublisher">
@@ -21,6 +22,7 @@
       <p>{{ message }}</p>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -61,7 +63,13 @@ export default {
   max-width: 400px;
   margin: auto;
 }
-
+.maunenthem{
+  background-color: white;
+  margin: 30px auto;
+  width: 900px;
+  border-radius: 5px;
+  padding: 20px;
+}
 .form-group {
   margin-bottom: 20px;
 }

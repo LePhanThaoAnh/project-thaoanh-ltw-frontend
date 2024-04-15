@@ -1,6 +1,7 @@
 <!-- LoginComponent.vue -->
 <template>
-    <div class="login-form" style="margin-top: 130px;">
+  <div class="formdangnhap">
+    <div class="login-form" >
       <h2>ADMIN ĐĂNG NHẬP</h2>
       <form @submit.prevent="submitForm">
         <div class="form-group">
@@ -23,6 +24,7 @@
         {{ loginSuccessMessage }}
       </div>
     </div>
+  </div>
   </template>
   
   <script>

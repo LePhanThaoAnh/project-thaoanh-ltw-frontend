@@ -1,5 +1,6 @@
 <template>
   <Header />
+  <div class="maunenchitiet">
   <div class="book-detail">
 
     <h2>Chi tiết sách</h2>
@@ -22,7 +23,7 @@
         <button type="button" class="trovetrangchu">Trở Về</button>
       </router-link>
   </div>
-  
+</div>
 </template>
 
 <script>
@@ -71,7 +72,13 @@ export default {
   max-width: 600px;
   margin: auto;
 }
-
+.maunenchitiet{
+  background-color: white;
+  margin: 30px auto;
+  width: 1000px;
+  border-radius: 5px;
+  padding: 20px;
+}
 .detail {
   background-color: #f9f9f9;
   padding: 20px;

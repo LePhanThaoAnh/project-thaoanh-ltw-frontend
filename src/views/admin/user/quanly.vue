@@ -1,6 +1,8 @@
 <template>
+    
     <div class="admin-page">
         <Sidebar />
+        <div class="nendocgia">
         <div class="main-content">
             <h2>Quản lý Người Đọc</h2>
             <table>
@@ -27,6 +29,7 @@
             </table>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -69,7 +72,13 @@ export default {
     flex: 1;
     padding: 20px;
 }
-
+.nendocgia{
+    background-color: white;
+    width: 100%;
+    height: 800px;
+    border-radius: 5px;
+    padding: 20px;
+}
 table {
     width: 100%;
     border-collapse: collapse;

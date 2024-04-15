@@ -1,7 +1,7 @@
 <template>
   <Header />
+  <div class="maunen">
   <div class="book-list">
-    
     <h2>Sách mới cập nhật</h2>
     <div class="search-filter">
       <input type="text" v-model="searchQuery" placeholder="Tìm kiếm">
@@ -12,7 +12,7 @@
           name: 'chitietsach',
           params: { id: book._id }
         }">
-          <h3>{{ book.tensach }}</h3>
+          <h3 class="tensach">{{ book.tensach }}</h3>
           <p>Mã sách: {{ book.masach }}</p>
           <p>Tác giả: {{ book.tacgia }}</p>
           <p>Số quyển: {{ book.soquyen }}</p>
@@ -27,12 +27,13 @@
         </router-link>
       </div>
     </div>
-    <div class="pagination" style="margin:0 0 9px 754px;">
-      <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
+    <div class="pagination" style="margin:0 0 9px 719px;">
+      <button class="phantrangmau" @click="previousPage" :disabled="currentPage === 1">Trang trước</button>
       <span style="padding:0 5px 0 5px;">Trang {{ currentPage }} / {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+      <button class="phantrangmau" @click="nextPage" :disabled="currentPage === totalPages">Kế tiếp</button>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -109,7 +110,13 @@ export default {
   max-width: 1000px;
   margin: auto;
 }
-
+.maunen{
+  background-color: white;
+  margin: auto;
+  width: 1200px;
+  border-radius: 5px;
+  padding: 20px;
+}
 .search-filter {
   margin-bottom: 1rem;
 }
@@ -132,12 +139,12 @@ export default {
   border: none;
   bottom: 10px;
   cursor: pointer;
-  background: linear-gradient(to right, #fc00ff, #00dbde);
+  background: linear-gradient(to right, #D28AD2, #178D8D);
 }
 
 .muonsach:hover {
 
-  background: linear-gradient(to right, #fc466b, #3f5efb);
+  background: linear-gradient(to right, #D74E69, #424E8A);
 }
 
 h2 {
@@ -149,5 +156,11 @@ a.gachchan,
 a.gachchan {
   text-decoration: none;
   color: inherit;
+}
+.tensach{
+  color: #0b1f77;
+}
+.phantrangmau{
+  background-color: #344a61;
 }
 </style>
