@@ -46,7 +46,7 @@
         publishers: [],
         selectedPublisher: '',
         currentPage: 1,
-        pageSize: 12,
+        pageSize: 9,
       };
     },
     props: {

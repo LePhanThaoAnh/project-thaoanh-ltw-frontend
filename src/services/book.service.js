@@ -21,5 +21,8 @@ class BookService {
     async delete(id) {
         return (await this.api.delete(`/${id}`)).data;
     }
+    async updateQuantity(id,quantity){
+        return (await this.api.put(`/update/${id}`)).data;
+    }
 }
 export default new BookService();
