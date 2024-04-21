@@ -5,7 +5,7 @@
 
     <h2>Chi tiết sách</h2>
     <div class="detail">
-      <div class="info">
+      <div class="info" style="    font-size: 20px;">
         <p><strong>Mã sách:</strong> {{ book.masach }}</p>
         <p><strong>Tên sách:</strong> {{ book.tensach }}</p>
         <p><strong>Số lượng:</strong> {{ book.soquyen }}</p>

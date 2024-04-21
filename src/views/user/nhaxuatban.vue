@@ -16,7 +16,8 @@
               <div v-for="(book, index) in paginatedBooks" :key="index" class="book">
                 <h3>{{ book.title }}</h3>
                 <p><strong>Mã sách:</strong> {{ book.masach }}</p>
-                <p><strong>Tên sách:</strong> {{ book.tensach }}</p>
+                <p style="color: rgb(251 44 44);
+                font-size: 18px;"><strong>Tên sách:</strong> {{ book.tensach }}</p>
                 <p><strong>Số lượng:</strong> {{ book.soquyen }}</p>
                 <p><strong>Đơn giá:</strong> {{ formatPrice(book.dongia) }}</p>
                 <p><strong>Năm Xuất Bản:</strong> {{ book.namxuatban }}</p>

@@ -17,7 +17,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(borrowing, index) in borrowings" :key="index">
+            <tr v-for="(borrowing, index) in paginatedBooks" :key="index">
               <td>{{ index + 1 }}</td>
               <td>{{ borrowing.madocgia.hoten }}</td>
               <td>{{ borrowing.masach.tensach }}</td>
@@ -34,6 +34,17 @@
             </tr>
           </tbody>
         </table>
+        <div class="pagination phantrang">
+          <button @click="previousPage" :disabled="currentPage === 1">
+            Trang trước
+          </button>
+          <span style="padding-right: 5px"
+            >Trang {{ currentPage }} / {{ totalPages }}
+          </span>
+          <button @click="nextPage" :disabled="currentPage === totalPages">
+            Kế tiếp
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -51,6 +62,8 @@ export default {
     return {
       borrowings: [
       ],
+      currentPage: 1,
+      pageSize: 10,
     };
   },
   methods: {
@@ -60,7 +73,26 @@ export default {
     async getAllBorrow() {
       this.borrowings = await BorrowingService.getAll();
     },
-
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.borrowings.length / this.pageSize);
+    },
+    paginatedBooks() {
+      const startIndex = (this.currentPage - 1) * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      return this.borrowings.slice(startIndex, endIndex);
+    },
   },
   created() {
     this.getAllBorrow();
@@ -111,5 +143,11 @@ th {
 button {
   padding: 5px 10px;
   margin-right: 5px;
+}
+
+.phantrang {
+  margin-top: 5px;
+  margin-left: 1329px;
+  padding: 2px;
 }
 </style>

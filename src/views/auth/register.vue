@@ -82,7 +82,16 @@ export default {
   methods: {
     async addUser() {
       try {
-        console.log(this.user)
+        // Kiểm tra số điện thoại có đúng 10 số không
+        if (this.user.sodienthoai.length !== 10) {
+          throw new Error('Số điện thoại phải chứa đúng 10 số.');
+        }
+        
+        // Kiểm tra mật khẩu có ít nhất 6 ký tự không
+        if (this.user.password.length < 6) {
+          throw new Error('Mật khẩu phải chứa ít nhất 6 ký tự.');
+        }
+
         await UserService.create(this.user);
         this.user.hoten = "";
         this.user.password = "";
@@ -93,7 +102,7 @@ export default {
         this.message = "Bạn đã đăng ký  thành công.";
         
       } catch (error) {
-        this.message = "Đã xảy ra lỗi khi đăng ký.";
+        this.message = error.message || "Đã xảy ra lỗi khi đăng ký.";
         console.log(error);
       }
     },

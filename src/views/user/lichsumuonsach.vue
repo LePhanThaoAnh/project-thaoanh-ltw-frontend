@@ -8,7 +8,7 @@
         <p><strong>Tên sách:</strong> {{ borrow.masach.tensach }}</p>
         <p><strong>Ngày mượn:</strong> {{ borrow.ngaymuon }}</p>
         <p><strong>Ngày trả:</strong> {{ borrow.ngaytra }}</p>
-        <p><strong>Trạng thái:</strong> {{ borrow.trangthai }}</p>
+        <p style="color: blue;"><strong>Trạng thái:</strong> {{ borrow.trangthai }}</p>
       </div>
     </div>
   </div>

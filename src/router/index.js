@@ -3,6 +3,7 @@ import Trangchu from "@/views/user/trangchu.vue";
 import Muonsach from "@/views/user/muonsach.vue";
 import Nhaxuatban from "@/views/user/nhaxuatban.vue";
 import Quydinh from "@/views/user/quydinhmuonsach.vue";
+import Taikhoan from "@/views/user/taikhoan.vue";
 import Lichsu from "@/views/user/lichsumuonsach.vue";
 import Chitietsach from "@/components/BookDetail.vue";
 import dangky from "../views/auth/register.vue";
@@ -35,6 +36,11 @@ const routes = [
     path: "/user/quydinh",
     name: "quydinh",
     component: Quydinh,
+  },
+  {
+    path: "/user/taikhoan",
+    name: "taikhoan",
+    component: Taikhoan,
   },
   {
     path: "/user/lichsu",

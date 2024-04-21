@@ -1,6 +1,6 @@
 <template>
   <Header />
-    <div class="maunen">
+    <div class="maunen" style="margin-top: 30px;">
       
       <div class="container">
         <h2 class="tieude">Hướng dẫn mượn sách:</h2>
@@ -15,6 +15,7 @@
           <li>Mỗi mã sách chỉ được mượn duy nhất 1 quyển</li>
           <li>Không được xé sách, làm hư sách</li>
           <li>Mỗi người mượn tối đa 3 quyển</li>
+          <li>Chỉ mượn sách trong vòng 30 ngày</li>
           <li>Trả sách đúng hạn</li>
           <li>Trả sách muộn tối đa 3 ngày</li>
           <li>Trả sách nếu hư tổn sẽ đền bù theo hư tổn tương đương giá trị sách</li>

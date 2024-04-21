@@ -212,7 +212,7 @@ button {
 }
 .phantrang {
   margin-top: 5px;
-  margin-left: 1170px;
+  margin-left: 1329px;
   padding: 2px;
 }
 </style>

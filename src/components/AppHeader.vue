@@ -9,6 +9,7 @@
         <router-link class="gachchan" to="/user/lichsu">Xem lịch sử mượn sách</router-link>
         <router-link class="gachchan" to="/user/nhaxuatban">Lọc theo nhà xuất bản</router-link>
         <router-link class="gachchan" to="/user/quydinh">Quy định mượn sách</router-link>
+        <router-link class="gachchan" to="/user/taikhoan">Tài khoản</router-link>
         <button style="background-color: #cbcaca;
         color: #383468;font-size: 18px; font-size: 1.4rem;" class="gachchan" @click="Logout">Đăng xuất</button>
       </nav>
